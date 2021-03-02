@@ -1,7 +1,9 @@
 <script lang="typescript">
   import { spring } from "svelte/motion";
 
-  export let playing: boolean = false;
+  import { colors, colorToBG } from "./colorset";
+
+  export let playing: number | boolean = false;
   export let index: number;
 
   const spring1 = spring(1, {
@@ -29,29 +31,36 @@
     damping: 0.125,
   });
 
-  const colors: string[] = ["white", "red", "yellow", "green", "blue"];
-
   const color = colors[Math.floor(Math.random() * colors.length)];
 
   const springs = [spring1, spring2, spring3, spring4, spring5];
 
   let hovering: boolean = false;
 
-  $: if (playing) {
-    springs.forEach((s) => s.set(1.5));
-  } else {
-    springs.forEach((s) => s.set(1));
+  function resolvePlaying(value: number | boolean): number {
+    if (value === false) {
+      return 1;
+    }
+    if (value === true) {
+      return 1.25;
+    }
+    return value;
   }
+
+  let resolvedPlaying: number;
+
+  $: resolvedPlaying = resolvePlaying(playing);
+  $: springs.forEach((s) => s.set(resolvedPlaying));
 </script>
 
 <div
-  class="relative h-9 w-9 self-center"
+  class="relative h-9 w-9 self-center cursor-pointer rounded-md hover:bg-white"
   on:mouseenter={() => (hovering = true)}
   on:mouseleave={() => (hovering = false)}
 >
   <div
-    class="absolute w-full h-full text-xs z-50 flex justify-center items-center {!playing &&
-    hovering
+    class="absolute w-full h-full text-xs z-50 flex justify-center items-center {resolvedPlaying <=
+      1 && hovering
       ? ''
       : 'invisible'}"
   >
@@ -59,10 +68,9 @@
   </div>
   <div class="relative h-full w-full">
     <div
-      class="absolute h-full w-full text-xs rounded-md border-2 border-gray-400 justify-end items-end {playing
-        ? color === 'white'
-          ? 'bg-white'
-          : `bg-${color}-100`
+      class="absolute h-full w-full text-xs rounded-md border-2 border-gray-400 justify-end items-end bg-opacity-70 {resolvedPlaying >
+      1
+        ? colorToBG(color)
         : ''}"
       style="transform: scale({$spring1}); z-index: 10;"
     />

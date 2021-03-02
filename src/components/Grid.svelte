@@ -1,7 +1,7 @@
 <script lang="typescript">
   import Cell from "./Cell.svelte";
 
-  export let playing: boolean[] = new Array(128).fill(false);
+  export let playing: (number | boolean)[] = new Array(128).fill(false);
 </script>
 
 <div>

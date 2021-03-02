@@ -1,52 +1,107 @@
 <script lang="typescript">
-  export let tracker: number[][] = [
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-    [-1, -1, -1, -1],
-  ];
+  import TrackerView from "./TrackerView.svelte";
+  import { getContext } from "./controller";
+
+  const [sequencer, ctrl] = getContext();
+
+  let activeRow: number = 0;
+  let activeCol: number = 0;
+
+  function onSet(event: CustomEvent<any>) {
+    if (event.detail.nextActive !== undefined) {
+      activeRow = event.detail.nextActive.row;
+      activeCol = event.detail.nextActive.col;
+    }
+    ctrl.setEvent(event.detail.col, event.detail.row, event.detail.event);
+  }
+
+  function onFocus(event: CustomEvent) {
+    activeRow = event.detail.row;
+    activeCol = event.detail.col;
+  }
+
+  function down() {
+    activeRow =
+      activeRow < $sequencer.sequence.length - 1
+        ? activeRow + 1
+        : $sequencer.sequence.length;
+  }
+
+  function up() {
+    activeRow = activeRow > 0 ? activeRow - 1 : 0;
+  }
+
+  function left() {
+    activeCol = activeCol > 0 ? activeCol - 1 : 0;
+  }
+
+  function right() {
+    activeCol = activeCol < 3 ? activeCol + 1 : 3;
+  }
+
+  function handleWindowKeydown(event: KeyboardEvent): boolean {
+    if (
+      document.activeElement != null &&
+      document.activeElement != document.body
+    ) {
+      return true;
+    }
+
+    if (event.key === " ") {
+      if ($sequencer.playHead.playing) {
+        ctrl.stop();
+      } else {
+        ctrl.play();
+      }
+    }
+
+    if (event.key === "Shift") {
+      return true;
+    }
+
+    if (event.key === "j") {
+      down();
+    }
+
+    if (event.key === "k") {
+      up();
+    }
+
+    if (event.key === "h") {
+      left();
+    }
+
+    if (event.key === "l") {
+      right();
+    }
+
+    if (event.key === "Enter") {
+      if (event.shiftKey) {
+        up();
+      } else {
+        down();
+      }
+    }
+
+    if (event.key === "Tab") {
+      if (event.shiftKey) {
+        left();
+      } else {
+        right();
+      }
+    }
+
+    return false;
+  }
 </script>
 
-<div class="flex flex-col relative w-full h-full">
-  <div
-    class="grid grid-cols-4 grid-rows-1 border-b-2 border-gray-500 gap-4 py-1 px-4 text-sm"
-  >
-    <div>track 1.</div>
-    <div>track 2.</div>
-    <div>track 3.</div>
-    <div>track 4.</div>
-  </div>
-  <div class="overflow-scroll">
-    {#each tracker as row}
-      <div class="grid grid-cols-4 grid-rows-1 gap-4 py-1 px-4 text-sm">
-        {#each row as event}
-          <div>
-            {event < 0 || event > 127
-              ? "-"
-              : `0x${event.toString(16).padStart(2, "0")}`}
-          </div>
-        {/each}
-      </div>
-    {/each}
-  </div>
-</div>
+<svelte:window on:keydown={handleWindowKeydown} />
+
+<TrackerView
+  {activeRow}
+  {activeCol}
+  tracker={$sequencer.sequence}
+  playingRow={$sequencer.playHead.playing ? $sequencer.playHead.row : undefined}
+  on:setEvent={onSet}
+  on:focus={onFocus}
+/>
