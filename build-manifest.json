@@ -1,0 +1,284 @@
+{
+  "inputs": {
+    "dist/index.css": {
+      "bytes": 7740,
+      "imports": []
+    },
+    "_snowpack/env.js": {
+      "bytes": 99,
+      "imports": []
+    },
+    "_snowpack/pkg/common/index-849141ec.js": {
+      "bytes": 10896,
+      "imports": []
+    },
+    "_snowpack/pkg/svelte/internal.js": {
+      "bytes": 566,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/index-849141ec.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/tone.js": {
+      "bytes": 1066833,
+      "imports": []
+    },
+    "_snowpack/pkg/svelte.js": {
+      "bytes": 107,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/index-849141ec.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/svelte/motion.js": {
+      "bytes": 4501,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/index-849141ec.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/Cell.svelte.js": {
+      "bytes": 7568,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/svelte.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/svelte/motion.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/Grid.svelte.js": {
+      "bytes": 6998,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/Cell.svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/colorset.js": {
+      "bytes": 660,
+      "imports": []
+    },
+    "dist/components/TrackerCell.svelte.js": {
+      "bytes": 7007,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/TrackerView.svelte.js": {
+      "bytes": 8865,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/colorset.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/TrackerCell.svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/rxjs.js": {
+      "bytes": 47024,
+      "imports": []
+    },
+    "_snowpack/pkg/rxjs/operators.js": {
+      "bytes": 334068,
+      "imports": []
+    },
+    "dist/components/controller.js": {
+      "bytes": 2071,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/rxjs.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/rxjs/operators.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/Tracker.svelte.js": {
+      "bytes": 4683,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/TrackerView.svelte.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/controller.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/Provider.svelte.js": {
+      "bytes": 1785,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/controller.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/App.svelte.js": {
+      "bytes": 6412,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/svelte/internal.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/tone.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/Grid.svelte.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/Tracker.svelte.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/controller.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/Provider.svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/index.js": {
+      "bytes": 394,
+      "imports": [
+        {
+          "path": "_snowpack/env.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/App.svelte.js",
+          "kind": "import-statement"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "../~~bundle~~/dist/index.css": {
+      "imports": [],
+      "entryPoint": "dist/index.css",
+      "inputs": {
+        "dist/index.css": {
+          "bytesInOutput": 7551
+        }
+      },
+      "bytes": 7552
+    },
+    "../~~bundle~~/dist/index.js": {
+      "imports": [],
+      "exports": [
+        "default"
+      ],
+      "entryPoint": "dist/index.js",
+      "inputs": {
+        "_snowpack/env.js": {
+          "bytesInOutput": 102
+        },
+        "_snowpack/pkg/common/index-849141ec.js": {
+          "bytesInOutput": 4661
+        },
+        "_snowpack/pkg/svelte/internal.js": {
+          "bytesInOutput": 0
+        },
+        "_snowpack/pkg/tone.js": {
+          "bytesInOutput": 224268
+        },
+        "_snowpack/pkg/svelte.js": {
+          "bytesInOutput": 0
+        },
+        "_snowpack/pkg/svelte/motion.js": {
+          "bytesInOutput": 1641
+        },
+        "dist/components/Cell.svelte.js": {
+          "bytesInOutput": 3059
+        },
+        "dist/components/Grid.svelte.js": {
+          "bytesInOutput": 2522
+        },
+        "dist/components/colorset.js": {
+          "bytesInOutput": 121
+        },
+        "dist/components/TrackerCell.svelte.js": {
+          "bytesInOutput": 2762
+        },
+        "dist/components/TrackerView.svelte.js": {
+          "bytesInOutput": 3244
+        },
+        "_snowpack/pkg/rxjs.js": {
+          "bytesInOutput": 17529
+        },
+        "_snowpack/pkg/rxjs/operators.js": {
+          "bytesInOutput": 154806
+        },
+        "dist/components/controller.js": {
+          "bytesInOutput": 782
+        },
+        "dist/components/Tracker.svelte.js": {
+          "bytesInOutput": 1742
+        },
+        "dist/components/Provider.svelte.js": {
+          "bytesInOutput": 516
+        },
+        "dist/App.svelte.js": {
+          "bytesInOutput": 2672
+        },
+        "dist/index.js": {
+          "bytesInOutput": 63
+        }
+      },
+      "bytes": 421549
+    }
+  }
+}
