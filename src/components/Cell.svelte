@@ -57,6 +57,21 @@
     return false;
   }
 
+  function onMouseUp(e: Event) {
+    if (clicking) {
+      if (dragging) {
+        dispatch("dragEnd", {
+          event: index,
+        });
+      }
+      dispatch("play", {
+        event: index,
+      });
+      dragging = false;
+      clicking = false;
+    }
+  }
+
   function resolvePlaying(value: number | boolean): number {
     if (value === false) {
       return 1;
@@ -80,11 +95,6 @@
         event: index,
       });
     }
-    if (clicking) {
-      dispatch("play", {
-        event: index,
-      });
-    }
     dragging = false;
     clicking = false;
   }}
@@ -99,6 +109,7 @@
     e.preventDefault();
     return false;
   }}
+  on:mouseup={clicking ? onMouseUp : undefined}
   on:mousemove={clicking ? onMouseMove : undefined}
 >
   <div

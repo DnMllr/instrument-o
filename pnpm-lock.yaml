@@ -2,6 +2,7 @@ dependencies:
   rxjs: 6.6.6
   svelte: 3.34.0
   svelte-hmr: 0.12.6_svelte@3.34.0
+  tone: 14.7.77
 devDependencies:
   "@snowpack/plugin-dotenv": 2.0.5
   "@snowpack/plugin-postcss": 1.1.0_postcss-cli@8.3.1+postcss@8.2.6
@@ -56,6 +57,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-CwQljpw6qSayc0fRG1soxHAKs1CnQMOChm4mlQP6My0kf9upVGizj/KhlTTgyUnETmHpcUXjaluNAkteRFuafg==
+  /@babel/runtime/7.13.9:
+    dependencies:
+      regenerator-runtime: 0.13.7
+    dev: false
+    resolution:
+      integrity: sha512-aY2kU+xgJ3dJ1eU6FMB9EH8dIe8dmusF1xEku52joLvw6eAFN0AI+WxCLDnpev2LEejWBAy2sBvBOBAjI3zmvA==
   /@csstools/convert-colors/1.4.0:
     dev: true
     engines:
@@ -741,6 +748,15 @@ packages:
       node: ">= 4.0.0"
     resolution:
       integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
+  /automation-events/3.0.6:
+    dependencies:
+      "@babel/runtime": 7.13.9
+      tslib: 2.1.0
+    dev: false
+    engines:
+      node: ">=10.15.3"
+    resolution:
+      integrity: sha512-nj4tBC0jgzYCY8Qq4Z3ljy/eDLeWnzSeBmd/Eq0lUuBvgm9GtDJoIds+w3mSlh6WH3dDEDm/lmr5lH6/mfgVWQ==
   /autoprefixer/10.2.4_postcss@8.2.6:
     dependencies:
       browserslist: 4.16.3
@@ -3738,7 +3754,6 @@ packages:
     resolution:
       integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==
   /regenerator-runtime/0.13.7:
-    dev: true
     resolution:
       integrity: sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
   /require-directory/2.1.1:
@@ -3976,6 +3991,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
+  /standardized-audio-context/25.1.9:
+    dependencies:
+      "@babel/runtime": 7.13.9
+      automation-events: 3.0.6
+      tslib: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-mSbAJL/WrkLt/R41v3RSXeL33iVWo1HR9D8/7KKPrQipNBgNrHVpx+N/KkBA7RXwPS69wMi7zl+TRhkCHI7oMg==
   /statuses/1.5.0:
     dev: true
     engines:
@@ -4240,6 +4263,13 @@ packages:
       node: ">=0.6"
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /tone/14.7.77:
+    dependencies:
+      standardized-audio-context: 25.1.9
+      tslib: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-tCfK73IkLHyzoKUvGq47gyDyxiKLFvKiVCOobynGgBB9Dl0NkxTM2p+eRJXyCYrjJwy9Y0XCMqD3uOYsYt2Fdg==
   /tr46/2.0.2:
     dependencies:
       punycode: 2.1.1
@@ -4252,6 +4282,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+  /tslib/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
   /tsscmp/1.0.6:
     dev: true
     engines:
@@ -4525,4 +4559,5 @@ specifiers:
   svelte-hmr: ^0.12.6
   svelte-preprocess: ^4.0.8
   tailwindcss: ^2.0.3
+  tone: ^14.7.77
   typescript: ^4.0.0

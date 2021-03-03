@@ -45,7 +45,7 @@ export function setContext(sequencer: Observable<State>, ctrl: Ctrl) {
 export function createSequencer(): [Observable<State>, Ctrl] {
   const bpm = new BehaviorSubject<number>(120);
   const sequence = new BehaviorSubject<number[][]>(
-    new Array(64).fill(-1).map((x) => [x, x, x, x])
+    new Array(16).fill(-1).map((x) => [x, x, x, x])
   );
   const playing = new BehaviorSubject<PlayingState>(PlayingState.Stopped);
 
