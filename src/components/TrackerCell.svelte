@@ -9,6 +9,7 @@
   export let activeRow: number;
   export let activeCol: number;
   export let rowCount: number;
+  export let dragging: number | undefined = undefined;
 
   let highlightedColor: string;
 
@@ -136,6 +137,14 @@
     return e.key !== "Enter";
   }
 
+  function drop(dragging: number) {
+    dispatch("drop", {
+      col,
+      row,
+      event: dragging,
+    });
+  }
+
   let el: HTMLDivElement;
 
   function handleWindowKeydown(
@@ -195,6 +204,7 @@
     " outline-none " +
     cellBorder(col, row, activeRow, activeCol)}
   contenteditable
+  on:mouseup={dragging !== undefined ? drop(dragging) : undefined}
   on:focus={handleFocus}
   on:blur={handleBlur}
   on:keydown={handleKeydown}

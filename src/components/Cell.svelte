@@ -1,10 +1,15 @@
 <script lang="typescript">
+  import { createEventDispatcher } from "svelte";
+  import { prevent_default } from "svelte/internal";
   import { spring } from "svelte/motion";
 
   import { colors, colorToBG } from "./colorset";
 
   export let playing: number | boolean = false;
   export let index: number;
+  export let draggable: boolean = false;
+
+  let dispatch = createEventDispatcher();
 
   const spring1 = spring(1, {
     stiffness: 0.09,
@@ -36,6 +41,21 @@
   const springs = [spring1, spring2, spring3, spring4, spring5];
 
   let hovering: boolean = false;
+  let clicking: boolean = false;
+  let dragging: boolean = false;
+
+  function onMouseMove(e: Event) {
+    if (clicking) {
+      if (!dragging) {
+        dispatch("dragStart", {
+          event: index,
+        });
+        dragging = true;
+      }
+    }
+    e.preventDefault();
+    return false;
+  }
 
   function resolvePlaying(value: number | boolean): number {
     if (value === false) {
@@ -53,10 +73,33 @@
   $: springs.forEach((s) => s.set(resolvedPlaying));
 </script>
 
+<svelte:window
+  on:mouseup={() => {
+    if (dragging) {
+      dispatch("dragEnd", {
+        event: index,
+      });
+    }
+    if (clicking) {
+      dispatch("play", {
+        event: index,
+      });
+    }
+    dragging = false;
+    clicking = false;
+  }}
+/>
+
 <div
   class="relative h-9 w-9 self-center cursor-pointer rounded-md hover:bg-white"
   on:mouseenter={() => (hovering = true)}
   on:mouseleave={() => (hovering = false)}
+  on:mousedown={(e) => {
+    clicking = true;
+    e.preventDefault();
+    return false;
+  }}
+  on:mousemove={clicking ? onMouseMove : undefined}
 >
   <div
     class="absolute w-full h-full text-xs z-50 flex justify-center items-center {resolvedPlaying <=

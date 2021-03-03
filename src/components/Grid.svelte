@@ -20,7 +20,7 @@
           {`0x${i.toString(16).padStart(2, "0")}`}
         </div>
       {/if}
-      <Cell playing={p} index={i} />
+      <Cell playing={p} index={i} on:dragStart on:dragEnd on:play />
     {/each}
   </div>
 </div>

@@ -4,8 +4,16 @@
 
   const [sequencer, ctrl] = getContext();
 
+  export let dragging: number | undefined = undefined;
+
   let activeRow: number = 0;
   let activeCol: number = 0;
+
+  function handleDrop(e: CustomEvent) {
+    activeRow = e.detail.row;
+    activeCol = e.detail.col;
+    ctrl.setEvent(e.detail.col, e.detail.row, e.detail.event);
+  }
 
   function onSet(event: CustomEvent<any>) {
     if (event.detail.nextActive !== undefined) {
@@ -100,8 +108,10 @@
 <TrackerView
   {activeRow}
   {activeCol}
+  {dragging}
   tracker={$sequencer.sequence}
   playingRow={$sequencer.playHead.playing ? $sequencer.playHead.row : undefined}
   on:setEvent={onSet}
   on:focus={onFocus}
+  on:drop={handleDrop}
 />

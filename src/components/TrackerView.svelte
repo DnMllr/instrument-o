@@ -6,6 +6,7 @@
   export let activeRow: number = 0;
   export let activeCol: number = 0;
   export let playingRow: number | undefined = undefined;
+  export let dragging: number | undefined = undefined;
 
   function rowBG(
     r: number,
@@ -74,10 +75,12 @@
             {activeCol}
             {activeRow}
             {col}
+            {dragging}
             row={r}
             rowCount={tracker.length}
             on:setEvent
             on:focus
+            on:drop
           />
         {/each}
       </div>
