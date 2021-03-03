@@ -101,7 +101,7 @@
 />
 
 <div
-  class="relative h-9 w-9 self-center cursor-pointer rounded-md hover:bg-white"
+  class="relative h-9 w-9 self-center cursor-pointer rounded-md"
   on:mouseenter={() => (hovering = true)}
   on:mouseleave={() => (hovering = false)}
   on:mousedown={(e) => {
@@ -122,10 +122,7 @@
   </div>
   <div class="relative h-full w-full">
     <div
-      class="absolute h-full w-full text-xs rounded-md border-2 border-gray-400 justify-end items-end bg-opacity-70 {resolvedPlaying >
-      1
-        ? colorToBG(color)
-        : ''}"
+      class="absolute h-full w-full text-xs rounded-md border-2 border-gray-400 justify-end items-end bg-opacity-70"
       style="transform: scale({$spring1}); z-index: 10;"
     />
     <div

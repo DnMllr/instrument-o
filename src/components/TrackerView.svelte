@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { colors, colorToBG } from "./colorset";
+  import { colorBGs } from "./colorset";
   import TrackerCell from "./TrackerCell.svelte";
 
   export let tracker: number[][] = [];
@@ -28,7 +28,7 @@
 
   function rowBorder(r: number, playingRow: number | undefined): string {
     if (r === playingRow) {
-      return ` border-${colors[r % colors.length]}-100 `;
+      return ` ${colorBGs[r % colorBGs.length]} `;
     }
 
     if (r === 0) {

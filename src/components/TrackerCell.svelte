@@ -1,8 +1,6 @@
 <script lang="typescript">
   import { createEventDispatcher } from "svelte";
 
-  import { colors, colorToBG } from "./colorset";
-
   export let event: number;
   export let col: number;
   export let row: number;
@@ -11,15 +9,11 @@
   export let rowCount: number;
   export let dragging: number | undefined = undefined;
 
-  let highlightedColor: string;
-
   let dispatch = createEventDispatcher();
 
   let text: string;
 
   $: text = eventToString(event);
-
-  $: highlightedColor = colors[Math.floor(Math.random() * colors.length)];
 
   function eventToString(event: number): string {
     return event < 0 || event > 127
@@ -35,7 +29,7 @@
   ): string {
     return c === activeCol
       ? r === activeRow
-        ? colorToBG(highlightedColor)
+        ? "bg-gray-100"
         : "bg-gray-200"
       : "";
   }
@@ -55,8 +49,19 @@
   let nextActive: { col: number; row: number } | undefined;
 
   function handleBlur() {
+    let trimmed = text.trim();
+    if (trimmed === "" || trimmed === "-" || trimmed === "d") {
+      text = "-";
+      dispatch("setEvent", {
+        event: -1,
+        col,
+        row,
+        nextActive,
+      });
+      return;
+    }
     try {
-      let i = parseInt(text, 16);
+      let i = parseInt(trimmed, 16);
       if (isNaN(i)) {
         if (previousText) {
           text = previousText;
@@ -67,7 +72,7 @@
       } else {
         text = eventToString(i);
         dispatch("setEvent", {
-          event: parseInt(text, 16),
+          event: parseInt(trimmed, 16),
           col,
           row,
           nextActive,
@@ -200,9 +205,12 @@
 />
 
 <div
-  class={cellBackground(col, row, activeRow, activeCol) +
-    " outline-none " +
-    cellBorder(col, row, activeRow, activeCol)}
+  class="outline-none {cellBackground(
+    col,
+    row,
+    activeRow,
+    activeCol
+  )} {cellBorder(col, row, activeRow, activeCol)}"
   contenteditable
   on:mouseup={dragging !== undefined ? drop(dragging) : undefined}
   on:focus={handleFocus}

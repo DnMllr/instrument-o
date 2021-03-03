@@ -67,19 +67,19 @@
       return true;
     }
 
-    if (event.key === "j") {
+    if (event.key === "j" || event.key === "ArrowDown") {
       down();
     }
 
-    if (event.key === "k") {
+    if (event.key === "k" || event.key === "ArrowUp") {
       up();
     }
 
-    if (event.key === "h") {
+    if (event.key === "h" || event.key === "ArrowLeft") {
       left();
     }
 
-    if (event.key === "l") {
+    if (event.key === "l" || event.key === "ArrowRight") {
       right();
     }
 
