@@ -1,13 +1,9 @@
 <script lang="typescript">
   import { createEventDispatcher } from "svelte";
-  import { prevent_default } from "svelte/internal";
   import { spring } from "svelte/motion";
 
-  import { colors, colorToBG } from "./colorset";
-
-  export let playing: number | boolean = false;
+  export let state: number | boolean = false;
   export let index: number;
-  export let draggable: boolean = false;
 
   let dispatch = createEventDispatcher();
 
@@ -35,8 +31,6 @@
     stiffness: 0.05,
     damping: 0.125,
   });
-
-  const color = colors[Math.floor(Math.random() * colors.length)];
 
   const springs = [spring1, spring2, spring3, spring4, spring5];
 
@@ -82,10 +76,10 @@
     return value;
   }
 
-  let resolvedPlaying: number;
-
-  $: resolvedPlaying = resolvePlaying(playing);
-  $: springs.forEach((s) => s.set(resolvedPlaying));
+  $: {
+    const resolved = resolvePlaying(state);
+    springs.forEach((s) => s.set(resolved));
+  }
 </script>
 
 <svelte:window
@@ -113,8 +107,7 @@
   on:mousemove={clicking ? onMouseMove : undefined}
 >
   <div
-    class="absolute w-full h-full text-xs z-50 flex justify-center items-center {resolvedPlaying <=
-      1 && hovering
+    class="absolute w-full h-full text-xs z-50 flex justify-center items-center {hovering
       ? ''
       : 'invisible'}"
   >

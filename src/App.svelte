@@ -5,7 +5,7 @@
   import Tracker from "./components/Tracker.svelte";
 
   import type { SequenceEvent } from "./components/controller";
-  import { createSequencer } from "./components/controller";
+  import { PlayingState, createSequencer } from "./components/controller";
   import Provider from "./components/Provider.svelte";
 
   const [sequencer, ctrl] = createSequencer();
@@ -17,8 +17,6 @@
   let dragging: number | undefined = undefined;
 
   let array: number[] = new Array(128).fill(1);
-
-  let synth: tone.Synth | undefined = undefined;
 
   const NOTES = [
     "C_1",
@@ -180,10 +178,6 @@
     }, 200);
   }
 
-  function handleDrop(e: CustomEvent) {
-    ctrl.setEvent(e.detail.col, e.detail.row, e.detail.event);
-  }
-
   $: {
     if (dragging !== undefined) {
       document.body.style.cursor = "grabbing";
@@ -197,7 +191,8 @@
   <Provider {sequencer} {ctrl}>
     <div class="px-16 py-4  max-w-8xl">
       <Grid
-        playing={array}
+        gridState={array}
+        currentlyPlaying={$sequencer.playHead.playing === PlayingState.Playing}
         on:dragStart={(e) => (dragging = e.detail.event)}
         on:dragEnd={() => (dragging = undefined)}
         on:play={(e) => flip(e.detail.event, tone.now())}

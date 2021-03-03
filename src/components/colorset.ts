@@ -16,6 +16,16 @@ export const colorBGs: string[] = [
   "bg-pink-100",
 ];
 
+export const colorBorders: string[] = [
+  "border-red-100",
+  "border-yellow-100",
+  "border-green-100",
+  "border-blue-100",
+  "border-purple-100",
+  "border-pink-100",
+];
+
+
 export function colorToBG(colorName: string): string {
   if (colorName === "white") {
     return "bg-white";
