@@ -1,5 +1,5 @@
-<script lang="typescript">
-  import { colorBorders } from "./colorset";
+<script lang="ts">
+  import { colorBorders } from "../lib/colorset";
   import TrackerCell from "./TrackerCell.svelte";
 
   export let tracker: number[][] = [];

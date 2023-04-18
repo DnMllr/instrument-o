@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
   import Cell from "./Cell.svelte";
 
   export let gridState: (number | boolean)[] = new Array(128).fill(false);
@@ -18,7 +18,7 @@
     {#each gridState as p, i}
       {#if i % 16 === 0}
         <div
-          class="text-xs z-50 flex justify-end items-end p-1  h-9 w-9 relative"
+          class="text-xs z-50 flex justify-end items-end p-1 h-9 w-9 relative"
         >
           {`0x${i.toString(16).padStart(2, "0")}`}
         </div>

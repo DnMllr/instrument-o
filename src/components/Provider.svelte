@@ -1,8 +1,8 @@
-<script lang="typescript">
+<script lang="ts">
   import type { Observable } from "rxjs";
 
-  import type { Ctrl, State } from "./controller";
-  import { setContext } from "./controller";
+  import type { Ctrl, State } from "../lib/controller";
+  import { setContext } from "../lib/controller";
 
   export let ctrl: Ctrl;
   export let sequencer: Observable<State>;
