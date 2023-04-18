@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
 
   export let event: number;
@@ -142,12 +142,14 @@
     return e.key !== "Enter";
   }
 
-  function drop(dragging: number) {
-    dispatch("drop", {
-      col,
-      row,
-      event: dragging,
-    });
+  function handleMouseup() {
+    if (dragging) {
+      dispatch("drop", {
+        col,
+        row,
+        event: dragging,
+      });
+    }
   }
 
   let el: HTMLDivElement;
@@ -212,7 +214,7 @@
     activeCol
   )} {cellBorder(col, row, activeRow, activeCol)}"
   contenteditable
-  on:mouseup={dragging !== undefined ? drop(dragging) : undefined}
+  on:mouseup={handleMouseup}
   on:focus={handleFocus}
   on:blur={handleBlur}
   on:keydown={handleKeydown}

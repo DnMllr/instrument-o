@@ -1,6 +1,6 @@
-<script lang="typescript">
+<script lang="ts">
   import TrackerView from "./TrackerView.svelte";
-  import { getContext } from "./controller";
+  import { getContext } from "../lib/controller";
 
   const [sequencer, ctrl] = getContext();
 
